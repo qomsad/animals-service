@@ -13,7 +13,6 @@ namespace AnimalsService.Config
               .AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader()
-              .WithExposedHeaders("Content-Range")
         );
       });
     }
