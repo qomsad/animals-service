@@ -8,7 +8,12 @@ namespace AnimalsService.Config
       {
         options.AddPolicy(
           "Default",
-          builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+          builder =>
+            builder
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .WithExposedHeaders("Content-Range")
         );
       });
     }
