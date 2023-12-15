@@ -16,6 +16,8 @@ namespace AnimalsService
       services.AddDbContext<ApplicationContext>();
       services.AddScoped<ISieveProcessor, ApplicationSieveProcessor>();
 
+      services.AddScoped<LegalTypeService>();
+      services.AddScoped<OrganizationTypeService>();
       services.AddScoped<OrganizationService>();
     }
 
