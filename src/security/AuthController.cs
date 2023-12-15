@@ -26,7 +26,7 @@ namespace AnimalsService.Security
           )
         );
       string encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-      return Ok(new { access_token = encodedJwt, username = user.Login });
+      return Ok(new { access_token = encodedJwt, login = user.Login });
     }
   }
 }
