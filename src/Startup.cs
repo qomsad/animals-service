@@ -1,4 +1,5 @@
 using AnimalsService.Config;
+using AnimalsService.Service;
 using Sieve.Services;
 
 namespace AnimalsService
@@ -13,7 +14,9 @@ namespace AnimalsService
       services.ConfigureCors();
       services.ConfigureSwagger();
       services.AddDbContext<ApplicationContext>();
-      services.AddScoped<SieveProcessor>();
+      services.AddScoped<ISieveProcessor, ApplicationSieveProcessor>();
+
+      services.AddScoped<OrganizationService>();
     }
 
     public void Configure(IApplicationBuilder app)
@@ -30,6 +33,20 @@ namespace AnimalsService
       app.UseSwaggerUI();
       app.UseDefaultFiles();
       app.UseStaticFiles();
+
+      app.Use(
+        async (context, next) =>
+        {
+          if (context.Request.Path == "/")
+          {
+            context.Response.Redirect("/swagger");
+          }
+          else
+          {
+            await next();
+          }
+        }
+      );
     }
   }
 }
