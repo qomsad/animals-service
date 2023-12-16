@@ -12,7 +12,7 @@ namespace AnimalsService.Infrastructure
     public abstract T Create(T entity);
     public abstract void Delete(long id);
     public abstract bool Exists(long id);
-    public abstract IEnumerable<T> GetList(SieveModel param);
+    public abstract Pagination<T> GetList(SieveModel param);
     public abstract T? GetOne(long id);
     public abstract T Update(long id, T entity);
   }

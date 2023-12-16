@@ -48,14 +48,16 @@ namespace AnimalsService.Service
       return context.Organizations.FirstOrDefault(e => e.Id == id) != null;
     }
 
-    public override IEnumerable<Organization> GetList(SieveModel param)
+    public override Pagination<Organization> GetList(SieveModel param)
     {
       IIncludableQueryable<Organization, object> model = context
         .Organizations
         .Include(e => e.LegalType)
         .Include(e => e.OrganizationType);
 
-      return sieve.Apply(param, model);
+      IEnumerable<Organization> data = sieve.Apply(param, model);
+      int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, model).Count();
+      return new Pagination<Organization> { Data = sieve.Apply(param, model), Total = Total };
     }
 
     public override Organization? GetOne(long id)

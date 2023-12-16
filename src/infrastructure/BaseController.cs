@@ -24,8 +24,9 @@ namespace AnimalsService.Infrastructure
     [HttpGet]
     public IActionResult GetList([FromQuery] SieveModel sieveModel)
     {
-      IEnumerable<T> data = service.GetList(sieveModel);
-      int total = data.Count();
+      Pagination<T> result = service.GetList(sieveModel);
+      IEnumerable<T> data = result.Data;
+      int total = result.Total;
       return Ok(new { data, total });
     }
 
