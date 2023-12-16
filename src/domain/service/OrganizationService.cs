@@ -57,7 +57,7 @@ namespace AnimalsService.Service
 
       IEnumerable<Organization> data = sieve.Apply(param, model);
       int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, model).Count();
-      return new Pagination<Organization> { Data = sieve.Apply(param, model), Total = Total };
+      return new Pagination<Organization> { Data = data, Total = Total };
     }
 
     public override Organization? GetOne(long id)

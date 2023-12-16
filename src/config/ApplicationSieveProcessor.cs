@@ -10,6 +10,8 @@ namespace AnimalsService.Config
     protected override SievePropertyMapper MapProperties(SievePropertyMapper mapper)
     {
       mapper.ApplyConfiguration<OrganizationSieveConfig>();
+      mapper.ApplyConfiguration<OrganizationTypeSieveConfig>();
+      mapper.ApplyConfiguration<LegalTypeSieveConfig>();
       return mapper;
     }
   }

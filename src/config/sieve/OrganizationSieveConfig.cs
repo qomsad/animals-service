@@ -12,8 +12,8 @@ namespace AnimalsService.Config.Sieve
       mapper.Property<Organization>(p => p.Name).CanSort().CanFilter();
       mapper.Property<Organization>(p => p.Inn).CanSort().CanFilter();
       mapper.Property<Organization>(p => p.Kpp).CanSort().CanFilter();
-      mapper.Property<Organization>(p => p.OrganizationType.Value).CanSort().CanFilter();
-      mapper.Property<Organization>(p => p.LegalType.Value).CanSort().CanFilter();
+      mapper.Property<Organization>(p => p.OrganizationType.Id).CanSort().CanFilter().HasName("organizationType");
+      mapper.Property<Organization>(p => p.LegalType.Id).CanSort().CanFilter().HasName("legalType");
     }
   }
 }

@@ -16,10 +16,10 @@ namespace AnimalsService.Model
     [Column("name")]
     public string? Name { get; set; }
 
-    [Column("inn")]
+    [Column("inn"), StringLength(12, ErrorMessage = "ИНН 12 цифр")]
     public string? Inn { get; set; }
 
-    [Column("kpp")]
+    [Column("kpp"), StringLength(9, ErrorMessage = "КПП 9 цифр")]
     public string? Kpp { get; set; }
 
     [ForeignKey("organization_type_id")]

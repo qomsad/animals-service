@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Sieve.Models;
 
 namespace AnimalsService.Infrastructure
 {
@@ -7,10 +8,11 @@ namespace AnimalsService.Infrastructure
     protected readonly DictBaseService<T> service = _service;
 
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll([FromQuery] SieveModel param)
     {
-      IEnumerable<T> data = service.GetAll();
-      int total = data.Count();
+      Pagination<T> result = service.GetAll(param);
+      IEnumerable<T> data = result.Data;
+      int total = result.Total;
       return Ok(new { data, total });
     }
 
