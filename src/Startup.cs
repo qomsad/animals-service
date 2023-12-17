@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using AnimalsService.Config;
 using AnimalsService.Service;
 using Sieve.Services;
@@ -9,10 +8,7 @@ namespace AnimalsService
   {
     public void ConfigureServices(IServiceCollection services)
     {
-      services
-        .AddControllers()
-        .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-      ;
+      services.AddControllers();
       services.ConfigureAuthentication();
       services.AddAuthorization();
       services.ConfigureCors();
