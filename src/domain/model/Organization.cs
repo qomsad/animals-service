@@ -16,10 +16,18 @@ namespace AnimalsService.Model
     [Column("name")]
     public string? Name { get; set; }
 
-    [Column("inn"), StringLength(12, ErrorMessage = "ИНН 12 цифр")]
+    [
+      Column("inn"),
+      RegularExpression(@"\d*", ErrorMessage = "ИНН может содержать только цифры"),
+      StringLength(12, ErrorMessage = "ИНН не может содержать больше 12 цифр")
+    ]
     public string? Inn { get; set; }
 
-    [Column("kpp"), StringLength(9, ErrorMessage = "КПП 9 цифр")]
+    [
+      Column("kpp"),
+      RegularExpression(@"\d*", ErrorMessage = "КПП может содержать только цифры"),
+      StringLength(9, ErrorMessage = "КПП не может содержать больше 9 цифр")
+    ]
     public string? Kpp { get; set; }
 
     [ForeignKey("organization_type_id")]

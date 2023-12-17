@@ -11,6 +11,6 @@ namespace AnimalsService.Dictionary
     public long Id { get; set; }
 
     [Column("record_name"), Sieve(CanFilter = true, CanSort = true)]
-    public string? Value { get; set; }
+    public required string Value { get; set; }
   }
 }

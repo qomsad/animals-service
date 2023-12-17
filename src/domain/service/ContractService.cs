@@ -72,6 +72,7 @@ namespace AnimalsService.Service
         .Include(e => e.Customer.LegalType)
         .Include(e => e.Customer.OrganizationType)
         .Include(e => e.ContractCosts)
+        .ThenInclude(e => e.Municipality)
         .FirstOrDefault(e => e.Id == id);
 
       return contract;
