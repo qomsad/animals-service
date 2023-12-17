@@ -12,8 +12,8 @@ namespace AnimalsService.Service
     public override Pagination<DicLegalType> GetAll(SieveModel param)
     {
       IEnumerable<DicLegalType> data = sieve.Apply(param, context.LegalTypes);
-      int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, context.LegalTypes).Count();
-      return new Pagination<DicLegalType> { Data = data, Total = Total };
+      int total = sieve.Apply(new SieveModel { Filters = param.Filters }, context.LegalTypes).Count();
+      return new Pagination<DicLegalType> { Data = data, Total = total };
     }
 
     public override DicLegalType? GetOne(long id)

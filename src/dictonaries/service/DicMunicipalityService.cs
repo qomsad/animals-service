@@ -12,8 +12,8 @@ namespace AnimalsService.Service
     public override Pagination<DicMunicipality> GetAll(SieveModel param)
     {
       IEnumerable<DicMunicipality> data = sieve.Apply(param, context.Municipalities);
-      int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, context.Municipalities).Count();
-      return new Pagination<DicMunicipality> { Data = data, Total = Total };
+      int total = sieve.Apply(new SieveModel { Filters = param.Filters }, context.Municipalities).Count();
+      return new Pagination<DicMunicipality> { Data = data, Total = total };
     }
 
     public override DicMunicipality? GetOne(long id)
