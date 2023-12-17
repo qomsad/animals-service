@@ -1,5 +1,5 @@
+using AnimalsService.Dictionary;
 using AnimalsService.Infrastructure;
-using AnimalsService.Model;
 using AnimalsService.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AnimalsService.Controller
 {
   [Authorize]
-  [Route("organizations")]
+  [Route("municipalities")]
   [ApiController]
-  public class OrganizationController(OrganizationService service) : BaseController<Organization>(service) { }
+  public class MunicipalityController(MunicipalityService service)
+    : DictBaseController<Municipality>(service) { }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AnimalsService.Controller
 {
   [Authorize]
-  [Route("organizations")]
+  [Route("contract_costs")]
   [ApiController]
-  public class OrganizationController(OrganizationService service) : BaseController<Organization>(service) { }
+  public class ContractCostsController(ContractCostService service) : BaseController<ContractCost>(service) { }
 }
