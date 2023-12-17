@@ -9,14 +9,16 @@ using Sieve.Services;
 
 namespace AnimalsService.Service
 {
-  public class OrganizationService(ApplicationContext context, ISieveProcessor sieve)
-    : BaseService<Organization>(context, sieve)
+  public class OrganizationService(
+    ApplicationContext context,
+    ISieveProcessor sieve
+  ) : BaseService<Organization>(context, sieve)
   {
     public override Organization Create(Organization entity)
     {
       if (entity.LegalType != null && entity.LegalType.Id != 0)
       {
-        LegalType? legalType = context.LegalTypes.Find(entity.LegalType.Id);
+        DicLegalType? legalType = context.LegalTypes.Find(entity.LegalType.Id);
         if (legalType != null)
         {
           entity.LegalType = legalType;
@@ -24,7 +26,9 @@ namespace AnimalsService.Service
       }
       if (entity.OrganizationType != null && entity.OrganizationType.Id != 0)
       {
-        OrganizationType? organizationType = context.OrganizationTypes.Find(entity.OrganizationType.Id);
+        DicOrganizationType? organizationType = context
+          .OrganizationTypes
+          .Find(entity.OrganizationType.Id);
         if (organizationType != null)
         {
           entity.OrganizationType = organizationType;
@@ -38,7 +42,8 @@ namespace AnimalsService.Service
 
     public override void Delete(long id)
     {
-      Organization entity = GetOne(id) ?? throw new InvalidOperationException("Запись не найдена");
+      Organization entity =
+        GetOne(id) ?? throw new InvalidOperationException("Запись не найдена");
       context.Organizations.Remove(entity);
       context.SaveChanges();
     }
@@ -56,7 +61,9 @@ namespace AnimalsService.Service
         .Include(e => e.OrganizationType);
 
       IEnumerable<Organization> data = sieve.Apply(param, model);
-      int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, model).Count();
+      int Total = sieve
+        .Apply(new SieveModel { Filters = param.Filters }, model)
+        .Count();
       return new Pagination<Organization> { Data = data, Total = Total };
     }
 
@@ -81,7 +88,7 @@ namespace AnimalsService.Service
 
       if (entity.LegalType != null && entity.LegalType.Id != 0)
       {
-        LegalType? legalType = context.LegalTypes.Find(entity.LegalType.Id);
+        DicLegalType? legalType = context.LegalTypes.Find(entity.LegalType.Id);
         if (legalType != null)
         {
           organization.LegalType = legalType;
@@ -89,7 +96,9 @@ namespace AnimalsService.Service
       }
       if (entity.OrganizationType != null && entity.OrganizationType.Id != 0)
       {
-        OrganizationType? organizationType = context.OrganizationTypes.Find(entity.OrganizationType.Id);
+        DicOrganizationType? organizationType = context
+          .OrganizationTypes
+          .Find(entity.OrganizationType.Id);
         if (organizationType != null)
         {
           organization.OrganizationType = organizationType;

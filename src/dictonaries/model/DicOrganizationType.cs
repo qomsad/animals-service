@@ -4,8 +4,8 @@ using Sieve.Attributes;
 
 namespace AnimalsService.Dictionary
 {
-  [Table("dic_legal_type")]
-  public class LegalType
+  [Table("dic_organization_type")]
+  public class DicOrganizationType
   {
     [Column("id"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Sieve(CanFilter = true, CanSort = true)]
     public long Id { get; set; }

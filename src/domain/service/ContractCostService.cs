@@ -18,7 +18,7 @@ namespace AnimalsService.Service
     {
       if (entity.Municipalities != null && entity.Municipalities.Id != 0)
       {
-        Municipality? municipalities = context
+        DicMunicipality? municipalities = context
           .Municipalities
           .Find(entity.Municipalities.Id);
         if (municipalities != null)
@@ -79,7 +79,7 @@ namespace AnimalsService.Service
       }
       if (entity.Municipalities != null && entity.Municipalities.Id != 0)
       {
-        Municipality? municipalities = context
+        DicMunicipality? municipalities = context
           .Municipalities
           .Find(entity.Municipalities.Id);
         if (municipalities != null)

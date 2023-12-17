@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AnimalsService.Controller
 {
   [Authorize]
-  [Route("legal_type")]
+  [Route("dic_legal_type")]
   [ApiController]
-  public class LegalTypeController(LegalTypeService service)
-    : DictBaseController<LegalType>(service) { }
+  public class DicLegalTypeController(DicLegalTypeService service)
+    : DictBaseController<DicLegalType>(service) { }
 }

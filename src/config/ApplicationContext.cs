@@ -6,9 +6,9 @@ namespace AnimalsService.Config
 {
   public class ApplicationContext() : DbContext()
   {
-    public DbSet<LegalType> LegalTypes { get; set; }
-    public DbSet<OrganizationType> OrganizationTypes { get; set; }
-    public DbSet<Municipality> Municipalities { get; set; }
+    public DbSet<DicLegalType> LegalTypes { get; set; }
+    public DbSet<DicOrganizationType> OrganizationTypes { get; set; }
+    public DbSet<DicMunicipality> Municipalities { get; set; }
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Contract> Contracts { get; set; }
     public DbSet<ContractCost> ContractCosts { get; set; }

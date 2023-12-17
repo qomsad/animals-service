@@ -17,6 +17,6 @@ namespace AnimalsService.Model
     public required Contract Contract { get; set; }
 
     [ForeignKey("municipalities_id"), Required]
-    public required Municipality Municipalities { get; set; }
+    public required DicMunicipality Municipalities { get; set; }
   }
 }

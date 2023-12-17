@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AnimalsService.Controller
 {
   [Authorize]
-  [Route("organization_type")]
+  [Route("dic_organization_type")]
   [ApiController]
-  public class OrganizationTypeController(OrganizationTypeService service)
-    : DictBaseController<OrganizationType>(service) { }
+  public class DicOrganizationTypeController(DicOrganizationTypeService service)
+    : DictBaseController<DicOrganizationType>(service) { }
 }

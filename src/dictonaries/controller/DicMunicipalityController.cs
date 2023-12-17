@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AnimalsService.Controller
 {
   [Authorize]
-  [Route("municipalities")]
+  [Route("dic_municipality")]
   [ApiController]
-  public class MunicipalityController(MunicipalityService service)
-    : DictBaseController<Municipality>(service) { }
+  public class DicMunicipalityController(DicMunicipalityService service)
+    : DictBaseController<DicMunicipality>(service) { }
 }
