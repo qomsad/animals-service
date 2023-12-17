@@ -24,12 +24,11 @@ namespace AnimalsService.Config
     {
       modelBuilder.Entity<Organization>().HasOne(o => o.OrganizationType).WithMany();
       modelBuilder.Entity<Organization>().HasOne(o => o.LegalType).WithMany();
-
-      modelBuilder.Entity<ContractCost>().HasOne(o => o.Municipalities).WithMany();
+      modelBuilder.Entity<ContractCost>().HasOne(o => o.Municipality).WithMany();
 
       modelBuilder.Entity<Contract>().HasOne(o => o.Contractor).WithMany();
       modelBuilder.Entity<Contract>().HasOne(o => o.Customer).WithMany();
-      modelBuilder.Entity<Contract>().HasMany(o => o.ContractCosts).WithOne(o => o.Contract);
+      modelBuilder.Entity<Contract>().HasMany(o => o.ContractCosts).WithOne().HasForeignKey(o => o.ContractId);
     }
   }
 }

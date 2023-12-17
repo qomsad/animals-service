@@ -13,10 +13,10 @@ namespace AnimalsService.Model
     [Column("catch_cost"), Required]
     public required double CatchCost { get; set; }
 
-    [ForeignKey("contract_id"), Required]
-    public required Contract Contract { get; set; }
+    [Column("contract_id"), Required]
+    public required long ContractId { get; set; }
 
-    [ForeignKey("municipalities_id"), Required]
-    public required DicMunicipality Municipalities { get; set; }
+    [ForeignKey("municipality_id"), Required]
+    public required DicMunicipality Municipality { get; set; }
   }
 }

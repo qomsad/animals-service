@@ -24,6 +24,6 @@ namespace AnimalsService.Model
     [ForeignKey("contractor_id"), Required]
     public required Organization Contractor { get; set; }
 
-    public List<ContractCost> ContractCosts { get; set; }
+    public List<ContractCost>? ContractCosts { get; set; }
   }
 }

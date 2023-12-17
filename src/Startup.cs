@@ -21,7 +21,6 @@ namespace AnimalsService
       services.AddScoped<DicMunicipalityService>();
       services.AddScoped<OrganizationService>();
       services.AddScoped<ContractService>();
-      services.AddScoped<ContractCostService>();
     }
 
     public void Configure(IApplicationBuilder app)
