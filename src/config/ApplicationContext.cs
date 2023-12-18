@@ -20,6 +20,10 @@ namespace AnimalsService.Config
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Contract> Contracts { get; set; }
     public DbSet<ContractCost> ContractCosts { get; set; }
+    public DbSet<CatchAct> CatchActs { get; set; }
+    public DbSet<CatchActAttach> CatchActAttaches { get; set; }
+    public DbSet<CatchCard> CatchCards { get; set; }
+    public DbSet<CatchCardPhoto> CatchCardPhotos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -37,6 +41,20 @@ namespace AnimalsService.Config
       modelBuilder.Entity<Contract>().HasOne(o => o.Contractor).WithMany();
       modelBuilder.Entity<Contract>().HasOne(o => o.Customer).WithMany();
       modelBuilder.Entity<Contract>().HasMany(o => o.ContractCosts).WithOne().HasForeignKey(o => o.ContractId);
+
+      modelBuilder.Entity<CatchAct>().HasOne(o => o.Municipality).WithMany();
+      modelBuilder.Entity<CatchAct>().HasOne(o => o.Contract).WithMany();
+      modelBuilder.Entity<CatchAct>().HasMany(o => o.CatchCards).WithOne().HasForeignKey(o => o.ActId);
+      modelBuilder.Entity<CatchAct>().HasMany(o => o.CatchActAttach).WithOne().HasForeignKey(o => o.ActId);
+
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.AnimalEars).WithMany();
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.AnimalHair).WithMany();
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.AnimalCategory).WithMany();
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.AnimalSize).WithMany();
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.AnimalTail).WithMany();
+      modelBuilder.Entity<CatchCard>().HasOne(o => o.OwnerSign).WithMany();
+
+      modelBuilder.Entity<CatchCard>().HasMany(o => o.CatchCardPhotos).WithOne().HasForeignKey(o => o.CardId);
     }
   }
 }

@@ -11,6 +11,7 @@ namespace AnimalsService.Config
     {
       mapper.ApplyConfiguration<OrganizationSieveConfig>();
       mapper.ApplyConfiguration<ContractSieveConfig>();
+      mapper.ApplyConfiguration<CatchActSieveConfig>();
       return mapper;
     }
   }
