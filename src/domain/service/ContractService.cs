@@ -1,4 +1,5 @@
 using AnimalsService.Config;
+using AnimalsService.Dictionary;
 using AnimalsService.Infrastructure;
 using AnimalsService.Model;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,14 @@ namespace AnimalsService.Service
           entity.Customer = organization;
         }
       }
+      foreach (var item in entity.ContractCosts)
+      {
+        DicMunicipality? municipality = context.Municipalities.Find(item.Municipality.Id);
+        if (municipality != null)
+        {
+          item.Municipality = municipality;
+        }
+      }
 
       context.Contracts.Add(entity);
       context.SaveChanges();
@@ -52,13 +61,11 @@ namespace AnimalsService.Service
       IIncludableQueryable<Contract, object?> model = context
         .Contracts
         .Include(e => e.Contractor)
-        .Include(e => e.Customer)
-        .Include(e => e.Contractor.Name)
-        .Include(e => e.Customer.Name);
+        .Include(e => e.Customer);
 
       IEnumerable<Contract> data = sieve.Apply(param, model);
-      int Total = sieve.Apply(new SieveModel { Filters = param.Filters }, model).Count();
-      return new Pagination<Contract> { Data = data, Total = Total };
+      int total = sieve.Apply(new SieveModel { Filters = param.Filters }, model).Count();
+      return new Pagination<Contract> { Data = data, Total = total };
     }
 
     public override Contract? GetOne(long id)
@@ -102,7 +109,16 @@ namespace AnimalsService.Service
           contract.Customer = organization;
         }
       }
-
+      var costs = new List<ContractCost>();
+      foreach (var item in entity.ContractCosts)
+      {
+        DicMunicipality? municipality = context.Municipalities.Find(item.Municipality.Id);
+        if (municipality != null)
+        {
+          costs.Add(new ContractCost { CatchCost = item.CatchCost, Municipality = municipality });
+        }
+      }
+      contract.ContractCosts = costs;
       context.Entry(contract).CurrentValues.SetValues(entity);
       context.SaveChanges();
       return contract;

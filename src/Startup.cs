@@ -37,6 +37,7 @@ namespace AnimalsService
       app.UseSwaggerUI();
       app.UseDefaultFiles();
       app.UseStaticFiles();
+      AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
       app.Use(
         async (context, next) =>

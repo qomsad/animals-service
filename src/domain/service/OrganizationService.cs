@@ -3,7 +3,6 @@ using AnimalsService.Dictionary;
 using AnimalsService.Infrastructure;
 using AnimalsService.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Sieve.Models;
 using Sieve.Services;
 
@@ -12,7 +11,7 @@ namespace AnimalsService.Service
   public class OrganizationService(
     ApplicationContext context,
     ISieveProcessor sieve
-  ) : BaseService<Organization>(context, sieve)
+    ) : BaseService<Organization>(context, sieve)
   {
     public override Organization Create(Organization entity)
     {
@@ -27,8 +26,8 @@ namespace AnimalsService.Service
       if (entity.OrganizationType != null && entity.OrganizationType.Id != 0)
       {
         DicOrganizationType? organizationType = context
-          .OrganizationTypes
-          .Find(entity.OrganizationType.Id);
+        .OrganizationTypes
+        .Find(entity.OrganizationType.Id);
         if (organizationType != null)
         {
           entity.OrganizationType = organizationType;
@@ -43,7 +42,7 @@ namespace AnimalsService.Service
     public override void Delete(long id)
     {
       Organization entity =
-        GetOne(id) ?? throw new InvalidOperationException("Запись не найдена");
+      GetOne(id) ?? throw new InvalidOperationException("Запись не найдена");
       context.Organizations.Remove(entity);
       context.SaveChanges();
     }
@@ -55,25 +54,25 @@ namespace AnimalsService.Service
 
     public override Pagination<Organization> GetList(SieveModel param)
     {
-      IIncludableQueryable<Organization, object> model = context
-        .Organizations
-        .Include(e => e.LegalType)
-        .Include(e => e.OrganizationType);
+      var model = context
+      .Organizations
+      .Include(e => e.LegalType)
+      .Include(e => e.OrganizationType);
 
       IEnumerable<Organization> data = sieve.Apply(param, model);
       int Total = sieve
-        .Apply(new SieveModel { Filters = param.Filters }, model)
-        .Count();
+      .Apply(new SieveModel { Filters = param.Filters }, model)
+      .Count();
       return new Pagination<Organization> { Data = data, Total = Total };
     }
 
     public override Organization? GetOne(long id)
     {
       Organization? organization = context
-        .Organizations
-        .Include(e => e.LegalType)
-        .Include(e => e.OrganizationType)
-        .FirstOrDefault(e => e.Id == id);
+      .Organizations
+      .Include(e => e.LegalType)
+      .Include(e => e.OrganizationType)
+      .FirstOrDefault(e => e.Id == id);
 
       return organization;
     }
@@ -97,8 +96,8 @@ namespace AnimalsService.Service
       if (entity.OrganizationType != null && entity.OrganizationType.Id != 0)
       {
         DicOrganizationType? organizationType = context
-          .OrganizationTypes
-          .Find(entity.OrganizationType.Id);
+        .OrganizationTypes
+        .Find(entity.OrganizationType.Id);
         if (organizationType != null)
         {
           organization.OrganizationType = organizationType;
