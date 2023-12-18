@@ -31,9 +31,9 @@ namespace AnimalsService.Model
     public string? Kpp { get; set; }
 
     [ForeignKey("organization_type_id")]
-    public DicOrganizationType? OrganizationType { get; set; }
+    public required DicOrganizationType OrganizationType { get; set; }
 
     [ForeignKey("legal_type_id")]
-    public DicLegalType? LegalType { get; set; }
+    public required DicLegalType LegalType { get; set; }
   }
 }
