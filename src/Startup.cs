@@ -16,8 +16,16 @@ namespace AnimalsService
       services.AddDbContext<ApplicationContext>();
       services.AddScoped<ISieveProcessor, ApplicationSieveProcessor>();
 
+      services.AddScoped<DicAnimalCategoryService>();
+      services.AddScoped<DicAnimalEarsService>();
+      services.AddScoped<DicAnimalHairService>();
+      services.AddScoped<DicAnimalSizeService>();
+      services.AddScoped<DicAnimalTailService>();
       services.AddScoped<DicLegalTypeService>();
       services.AddScoped<DicOrganizationTypeService>();
+      services.AddScoped<DicOwnerSignService>();
+      services.AddScoped<DicStatusService>();
+
       services.AddScoped<DicMunicipalityService>();
       services.AddScoped<OrganizationService>();
       services.AddScoped<ContractService>();
